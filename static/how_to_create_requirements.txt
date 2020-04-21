@@ -1,0 +1,5 @@
+Used pipreqs to create requirements.txt
+## Use case
+pipreqs /home/project/location
+
+https://pypi.org/project/pipreqs/
