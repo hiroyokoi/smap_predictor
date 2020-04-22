@@ -1,4 +1,4 @@
-import json, torch
+import torch
 from commons import get_model, transform_image
 
 model = get_model()
