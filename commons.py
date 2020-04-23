@@ -4,7 +4,7 @@ from torchvision import models
 import torchvision.transforms as transforms
 import torch.nn as nn
 import numpy as np
-import json
+# import json
 
 # Model import
 def get_model():
@@ -17,7 +17,7 @@ def get_model():
         nn.LogSoftmax(dim = 1)
     )
     model.classifier = fc
-    model.load_state_dict(torch.load('Smap_predictor.pt', map_location=torch.device("cpu")))
+    model.load_state_dict(torch.load('Smap_predictor.pt'))#, map_location=torch.device("cpu")))
     model.eval()
     return model
 
@@ -32,14 +32,14 @@ def transform_image(image_bytes):
     image = Image.open(io.BytesIO(image_bytes))
     return my_transforms(image).unsqueeze(0)
 
-# Json class encoder
-class JsonEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, np.integer):
-            return int(obj)
-        elif isinstance(obj, np.floating):
-            return float(obj)
-        elif isinstance(obj, np.ndarray):
-            return obj.tolist()
-        else:
-            return super(MyEncoder, self).default(obj)
+# # Json class encoder
+# class JsonEncoder(json.JSONEncoder):
+#     def default(self, obj):
+#         if isinstance(obj, np.integer):
+#             return int(obj)
+#         elif isinstance(obj, np.floating):
+#             return float(obj)
+#         elif isinstance(obj, np.ndarray):
+#             return obj.tolist()
+#         else:
+#             return super(MyEncoder, self).default(obj)

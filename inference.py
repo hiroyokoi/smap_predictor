@@ -19,7 +19,7 @@ def get_prediction(image_bytes, topk=5):
     topk, topclass = ps.topk(topk, dim=1)
     topk, topclass = topk.squeeze().detach().numpy(), topclass.squeeze().detach().numpy()
     # Extract the actual classes and probabilities
-    prob_dict = {}
-    for i in range(len(model_classes)):
-      prob_dict[model_classes[topclass[i]]] = topk[i]
-    return prob_dict
+    # prob_dict = {}
+    # for i in range(len(model_classes)):
+    #   prob_dict[model_classes[topclass[i]]] = topk[i]
+    return model_classes[topclass[0]]#prob_dict

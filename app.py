@@ -2,12 +2,11 @@ import os
 #import commons.JsonEncoder as JsonEncoder
 from flask import Flask, render_template, request, redirect
 from inference import get_prediction
-from commons import format_class_name
 
 # instantiate Flask
 app = Flask(__name__)
 
-@app.route('/predict', methods=['POST'])
+@app.route('/', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         if 'file' not in request.files:
