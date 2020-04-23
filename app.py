@@ -1,5 +1,5 @@
 import os
-import commons.JsonEncoder as JsonEncoder
+#import commons.JsonEncoder as JsonEncoder
 from flask import Flask, render_template, request, redirect
 from inference import get_prediction
 from commons import format_class_name
@@ -17,7 +17,7 @@ def upload_file():
             return
         img_bytes = file.read()
         prob_dict = get_prediction(image_bytes=img_bytes)
-        return render_template('result.html', prob_dict, cls = JsonEncoder)
+        return render_template('result.html', prob_dict)#, cls = JsonEncoder)
     return render_template('index.html')
 
 if __name__ == '__main__':
