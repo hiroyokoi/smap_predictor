@@ -17,7 +17,7 @@ def get_model():
         nn.LogSoftmax(dim = 1)
     )
     model.classifier = fc
-    model.load_state_dict(torch.load('Smap_predictor.pt'))#, map_location=torch.device("cpu")))
+    model.load_state_dict(torch.load('Smap_predictor.pt', map_location=torch.device('cpu')))
     model.eval()
     return model
 
