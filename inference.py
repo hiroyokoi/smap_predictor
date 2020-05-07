@@ -15,6 +15,6 @@ def get_prediction(image_bytes):
         out = model.forward(tensor)
     except Exception:
         return 0, 'error'
-    _, y_hat = outputs.max(1)
+    _, y_hat = out.max(1)
     predicted_idx = str(y_hat.item())
     return model_classes[predicted_idx]
