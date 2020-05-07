@@ -1,12 +1,11 @@
 import io
+
+
 from PIL import Image
 from torchvision import models
 import torchvision.transforms as transforms
-import torch.nn as nn
-import numpy as np
-# import json
 
-# Model import
+
 def get_model():
     model = models.densenet121(pretrained = True)
     fc = nn.Sequential(
@@ -21,7 +20,7 @@ def get_model():
     model.eval()
     return model
 
-# Transform image
+
 def transform_image(image_bytes):
     my_transforms = transforms.Compose([transforms.Resize(255),
                                         transforms.CenterCrop(224),
