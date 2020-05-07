@@ -5,21 +5,16 @@ model = get_model()
 
 # Obtain class list
 model_classes = ['Goro_Inagaki', 'Masahiro_Nakai', 'Shingo_Katori', 'Takuya_Kimura', 'Tsuyoshi_Kusanagi']
-model_classes = {idx: each for idx, each in enumerate(model_classes)}
+model_classes = {str(idx): each for idx, each in enumerate(model_classes)}
+model_classes['1']
 
 # Predict image
-def get_prediction(image_bytes, topk=5):
+def get_prediction(image_bytes):
     try:
         tensor = transform_image(image_bytes)
         out = model.forward(tensor)
     except Exception:
         return 0, 'error'
-    ps = torch.exp(out)
-    # Find the topk predictions
-    topk, topclass = ps.topk(topk, dim=1)
-    topk, topclass = topk.squeeze().detach().numpy(), topclass.squeeze().detach().numpy()
-    # Extract the actual classes and probabilities
-    # prob_dict = {}
-    # for i in range(len(model_classes)):
-    #   prob_dict[model_classes[topclass[i]]] = topk[i]
-    return model_classes[topclass[0]]#prob_dict
+    _, y_hat = outputs.max(1)
+    predicted_idx = str(y_hat.item())
+    return model_classes[predicted_idx]
