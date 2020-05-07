@@ -1,6 +1,5 @@
 import io
-
-
+import torch
 from PIL import Image
 from torchvision import models
 import torchvision.transforms as transforms
